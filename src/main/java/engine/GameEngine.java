@@ -16,9 +16,7 @@ public class GameEngine {
 	private final Map<Point, TileType> tiles = new HashMap<>();
 	private int levelHorizontalDimension;
 	private int levelVerticalDimension;
-
 	private Point player;
-	private Point movable;
 	private final int level;
 
 	public GameEngine(LevelCreator levelCreator) {
@@ -38,21 +36,9 @@ public class GameEngine {
 		if (tileType.equals(TileType.PLAYER)) {
 			setPlayer(x, y);
 			tiles.put(new Point(x, y), TileType.PASSABLE);
-		} else if (tileType.equals(TileType.MOVABLE)) {
-			setMovable(x, y);
-			tiles.put(new Point(x, y), TileType.MOVABLE);
 		} else {
 			tiles.put(new Point(x, y), tileType);
 		}
-	}
-
-	public void resetMovableTile(int xCoordinateMovable, int yCoordinateMovable) {
-		tiles.put(new Point(xCoordinateMovable, yCoordinateMovable), TileType.PASSABLE);
-	}
-
-	public void setNewMovableTilePosition(int xCoordinateMovable, int yCoordinateMovable) {
-		setMovable(xCoordinateMovable, yCoordinateMovable);
-		tiles.put(new Point(xCoordinateMovable, yCoordinateMovable), TileType.MOVABLE);
 	}
 
 	public void setLevelHorizontalDimension(int levelHorizontalDimension) {
@@ -75,12 +61,8 @@ public class GameEngine {
 		return tiles.get(new Point(x, y));
 	}
 
-	public void setPlayer(int x, int y) {
+	private void setPlayer(int x, int y) {
 		player = new Point(x, y);
-	}
-
-	public void setMovable(int x, int y) {
-		movable = new Point(x, y);
 	}
 
 	public int getPlayerXCoordinate() {
@@ -91,12 +73,20 @@ public class GameEngine {
 		return (int) player.getY();
 	}
 
-	public int getMovableXCoordinate() {
-		return (int) movable.getX();
+	public void keyLeft() {
+		// TODO Implement movement logic here
 	}
 
-	public int getMovableYCoordinate() {
-		return (int) movable.getY();
+	public void keyRight() {
+		// TODO Implement movement logic here
+	}
+
+	public void keyUp() {
+		// TODO Implement movement logic here
+	}
+
+	public void keyDown() {
+		// TODO Implement movement logic here
 	}
 
 	public void setExit(boolean exit) {
@@ -106,5 +96,4 @@ public class GameEngine {
 	public boolean isExit() {
 		return exit;
 	}
-
 }

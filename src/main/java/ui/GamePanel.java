@@ -6,7 +6,6 @@ import java.awt.Image;
 import java.awt.Panel;
 
 import engine.GameEngine;
-import movement.Movement;
 import tiles.TileType;
 
 public class GamePanel extends Panel {
@@ -18,12 +17,10 @@ public class GamePanel extends Panel {
 	private final TilePainter tilePainter;
 	private int tileWidth;
 	private int tileHeight;
-	private Movement movement;
 
-	public GamePanel(GameEngine gameEngine, TilePainter tilePainter, Movement movement) {
+	public GamePanel(GameEngine gameEngine, TilePainter tilePainter) {
 		this.gameEngine = gameEngine;
 		this.tilePainter = tilePainter;
-		this.movement = movement;
 		repaint();
 	}
 
@@ -37,10 +34,8 @@ public class GamePanel extends Panel {
 		super.paint(graphics);
 		requestFocusInWindow();
 		tilePainter.paintTiles(graphics, gameEngine, tileWidth, tileHeight);
-
 		tilePainter.paintPlayer(graphics, gameEngine.getPlayerXCoordinate(), gameEngine.getPlayerYCoordinate(),
 				tileWidth, tileHeight, TileType.PLAYER);
-
 	}
 
 	@Override
@@ -59,13 +54,13 @@ public class GamePanel extends Panel {
 	@Override
 	public boolean keyDown(Event evt, int key) {
 		if (key == Event.LEFT) {
-			movement.keyLeft();
+			gameEngine.keyLeft();
 		} else if (key == Event.RIGHT) {
-			movement.keyRight();
+			gameEngine.keyRight();
 		} else if (key == Event.UP) {
-			movement.keyUp();
+			gameEngine.keyUp();
 		} else if (key == Event.DOWN) {
-			movement.keyDown();
+			gameEngine.keyDown();
 		}
 
 		return true;
